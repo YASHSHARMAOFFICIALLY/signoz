@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+/* light-only design: pin `dark:` to a .dark class that is never set,
+   so imported ui/ components don't flip on OS dark mode */
+@custom-variant dark (&:is(.dark *));
+
 @theme inline {
   --color-body: #faf7f2;
   --color-surface: #ffffff;
@@ -9,6 +13,11 @@
   --color-heading: #111114;
   --color-muted: #5b5b66;
   --color-border: #e7e2da;
+
+  /* shadcn-named aliases so imported ui/ components inherit this palette */
+  --color-background: #faf7f2;
+  --color-foreground: #111114;
+  --color-muted-foreground: #5b5b66;
 
   --font-sans: var(--font-open-sans);
   --font-display: var(--font-kanit);
