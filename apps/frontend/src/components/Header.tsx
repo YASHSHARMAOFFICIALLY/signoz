@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { GenerateButton } from "@/components/ui/generate-button";
+import { cn } from "@/lib/utils";
 
 const NAV = ["About", "Features", "Pricing", "Contact"];
 const PAGES = ["Blog", "Case Studies", "Careers", "404"];
@@ -20,11 +22,12 @@ export default function Header() {
   return (
     <header className="fixed inset-x-0 top-0 z-50 px-4 pt-4">
       <div
-        className={`mx-auto flex max-w-6xl items-center justify-between gap-6 rounded-full px-5 py-3 transition-all duration-300 ${
+        className={cn(
+          "mx-auto flex max-w-6xl items-center justify-between gap-6 rounded-full px-5 py-3 transition-all duration-300",
           scrolled
             ? "border border-border bg-surface/90 shadow-[0_20px_50px_-20px_rgba(17,17,20,0.25)] backdrop-blur"
-            : "border border-transparent"
-        }`}
+            : "border border-transparent",
+        )}
       >
         <a
           href="#"
@@ -82,12 +85,9 @@ export default function Header() {
         </nav>
 
         <div className="flex items-center gap-3">
-          <a
-            href="#"
-            className="hidden rounded-full bg-primary px-5 py-2.5 text-[0.95rem] font-semibold text-white transition-colors hover:bg-primary-hover md:inline-block"
-          >
-            Get Started
-          </a>
+          <div className="hidden md:block">
+            <GenerateButton />
+          </div>
           <button
             aria-label="Toggle menu"
             onClick={() => setMenuOpen((v) => !v)}
