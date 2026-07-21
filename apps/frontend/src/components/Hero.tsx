@@ -1,4 +1,6 @@
+import Image from "next/image";
 import Reveal from "./Reveal";
+import { cn } from "@/lib/utils";
 
 const TRUST = ["Built for Agents of SigNoz Hackathon × WeMakeDevs"];
 
@@ -31,7 +33,7 @@ export default function Hero() {
 
         <Reveal variant="up" delay={100}>
           <h1 className="mt-6 text-4xl font-semibold leading-[1.05] tracking-tight text-heading sm:text-6xl">
-            Resolve incidents{" "}
+            Resolve Incidents{" "}
             <span className="font-display italic text-primary">before</span>{" "}
             your users feel them
           </h1>
@@ -103,7 +105,17 @@ export default function Hero() {
       </div>
 
       {/* Product mockup — live investigation, original faux UI, no lifted asset */}
-      <Reveal variant="up" delay={200} className="relative mx-auto mt-16 max-w-5xl">
+      <Reveal variant="up" delay={200} className="relative mx-auto mt-80 max-w-5xl">
+        {/* floating robot mascot — top-right of the mockup */}
+        <div className="animate-float absolute -right-6 -top-16 z-20 hidden sm:block">
+          <Image
+            src="/robot.webp"
+            alt="Lumen copilot mascot"
+            width={130}
+            height={130}
+            priority
+          />
+        </div>
         <div className="overflow-hidden rounded-[1.75rem] border border-border bg-surface shadow-[0_50px_140px_-45px_rgba(17,17,20,0.4)]">
           {/* window chrome */}
           <div className="flex items-center gap-2 border-b border-border px-5 py-3.5">
@@ -130,16 +142,18 @@ export default function Hero() {
                 ].map(([name, active]) => (
                   <li
                     key={name as string}
-                    className={`flex items-center gap-2.5 rounded-lg px-2.5 py-2 text-sm ${
+                    className={cn(
+                      "flex items-center gap-2.5 rounded-lg px-2.5 py-2 text-sm",
                       active
                         ? "bg-surface font-semibold text-heading shadow-sm"
-                        : "text-muted"
-                    }`}
+                        : "text-muted",
+                    )}
                   >
                     <span
-                      className={`h-6 w-6 shrink-0 rounded-md ${
-                        active ? "bg-primary" : "bg-border"
-                      }`}
+                      className={cn(
+                        "h-6 w-6 shrink-0 rounded-md",
+                        active ? "bg-primary" : "bg-border",
+                      )}
                     />
                     {name}
                   </li>
@@ -175,11 +189,12 @@ export default function Hero() {
                     ].map(([label, state]) => (
                       <div key={label} className="flex items-center gap-2.5">
                         <span
-                          className={`flex h-4 w-4 items-center justify-center rounded-full ${
+                          className={cn(
+                            "flex h-4 w-4 items-center justify-center rounded-full",
                             state === "done"
                               ? "bg-primary text-white"
-                              : "border-2 border-primary"
-                          }`}
+                              : "border-2 border-primary",
+                          )}
                         >
                           {state === "done" && (
                             <svg width="10" height="10" viewBox="0 0 24 24" fill="none">
@@ -196,9 +211,7 @@ export default function Hero() {
                             <span className="h-1.5 w-1.5 animate-ping rounded-full bg-primary" />
                           )}
                         </span>
-                        <span
-                          className={state === "run" ? "text-heading" : ""}
-                        >
+                        <span className={cn(state === "run" && "text-heading")}>
                           {label}
                         </span>
                       </div>
