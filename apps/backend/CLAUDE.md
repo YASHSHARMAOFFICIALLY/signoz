@@ -24,7 +24,6 @@ Reach for these before adding a package:
 
 | Need | Use | Not |
 |---|---|---|
-| HTTP server | `Bun.serve()` | express |
 | Postgres | `Bun.sql` | pg, postgres.js |
 | SQLite | `bun:sqlite` | better-sqlite3 |
 | Redis | `Bun.redis` | ioredis |
@@ -41,5 +40,12 @@ import { test, expect } from "bun:test";
 ```
 
 ## Layout
+
+- `index.ts` — Express entrypoint (run with Bun). Routes `/api/auth/*` to Better Auth via `toNodeHandler`, adds CORS. Auth handler is mounted before `express.json()` so it gets the raw body.
+- `lib/` — shared instances. `lib/auth.ts` is the Better Auth server config.
+- `prisma/` — `schema.prisma` (Better Auth models) + `migrations/`.
+- `routes/ services/ schemas/ types/ utils/` — empty scaffolds; fill as the API grows. `src/` is unused — prefer these flat dirs at the package root.
+
+Auth flow: `index.ts` → `lib/auth.ts` (`auth.handler`) → Prisma → Neon Postgres.
 
 <!-- TODO: fill in — see note below -->
