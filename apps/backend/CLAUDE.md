@@ -42,4 +42,11 @@ import { test, expect } from "bun:test";
 
 ## Layout
 
+- `index.ts` — `Bun.serve` entrypoint. Routes `/api/auth/*` to Better Auth, adds CORS.
+- `lib/` — shared instances. `lib/auth.ts` is the Better Auth server config.
+- `prisma/` — `schema.prisma` (Better Auth models) + `migrations/`.
+- `routes/ services/ schemas/ types/ utils/` — empty scaffolds; fill as the API grows. `src/` is unused — prefer these flat dirs at the package root.
+
+Auth flow: `index.ts` → `lib/auth.ts` (`auth.handler`) → Prisma → Neon Postgres.
+
 <!-- TODO: fill in — see note below -->
