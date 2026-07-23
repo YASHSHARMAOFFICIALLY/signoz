@@ -58,7 +58,6 @@ export default function LoginAside() {
             <div key={s.name} className="flex items-center gap-3 py-[3px]">
               <span
                 className={`w-28 shrink-0 truncate font-mono text-[11px] ${s.hot ? "text-primary" : "text-white/55"}`}
-                style={{ paddingLeft: `${s.depth * 8}px` }}
               >
                 {s.name}
               </span>
